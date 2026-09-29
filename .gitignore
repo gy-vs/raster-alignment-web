@@ -6,6 +6,8 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+backend/static/
+*.tmp
 .env
 .env.*
 *.pem

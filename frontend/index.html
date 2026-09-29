@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoTIFF 双栅格地理对照</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <header>
+          <h1>双栅格地理对照</h1>
+          <div id="session-id" class="mono small muted"></div>
+        </header>
+
+        <section class="panel">
+          <h2>输入栅格</h2>
+          <div id="slot-a" class="slot-panel"></div>
+          <div id="slot-b" class="slot-panel"></div>
+        </section>
+
+        <section class="panel">
+          <h2>可比较性</h2>
+          <div id="comparison"></div>
+        </section>
+
+        <section class="panel">
+          <h2>显示方式（只影响观察，不参与计算）</h2>
+          <div class="row">
+            <button id="mode-swipe" class="btn active">分隔线对照</button>
+            <button id="mode-diff" class="btn">差值 A − B</button>
+          </div>
+          <div class="row">
+            <label class="muted">重采样</label>
+            <select id="resampling">
+              <option value="bilinear">双线性</option>
+              <option value="nearest">最近邻</option>
+              <option value="average">平均</option>
+              <option value="cubic">三次卷积</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="muted">A 色带</label>
+            <select id="ramp-a">
+              <option value="terrain">地形</option>
+              <option value="viridis">青绿</option>
+              <option value="grayscale">灰度</option>
+            </select>
+            <label class="muted">B 色带</label>
+            <select id="ramp-b">
+              <option value="terrain">地形</option>
+              <option value="viridis">青绿</option>
+              <option value="grayscale">灰度</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="muted">不透明度</label>
+            <input id="opacity" type="range" min="0.35" max="1" step="0.05"
+              value="1" />
+          </div>
+          <div class="row">
+            <label class="muted">差值极值</label>
+            <input id="diff-scale" type="number" min="0" step="0.5"
+              placeholder="自动" style="width:90px" />
+            <label class="muted"><input id="show-coverage" type="checkbox"
+              checked /> 显示单方覆盖</label>
+          </div>
+          <div id="diff-stats" class="small mono"></div>
+        </section>
+
+        <section class="panel" id="point-panel-wrap">
+          <h2>选点读数</h2>
+          <div id="point-panel"></div>
+        </section>
+      </aside>
+      <main id="map-wrap">
+        <canvas id="map"></canvas>
+        <div id="fatal" class="fatal"></div>
+        <div id="map-hint" class="map-hint">
+          拖动平移 · 滚轮缩放 · 单击选点 · 拖动虚线分隔线对照 A/B
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

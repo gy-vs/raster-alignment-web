@@ -1,0 +1,84 @@
+{
+  "terrain": "800 + 250*sin(2*pi*1.5*u)*cos(2*pi*v) + 100*u + 60*v",
+  "u": "(lon-11.00)/0.02",
+  "v": "(lat-46.00)/0.02",
+  "relation": "B = terrain + (3u - 2v + 1.5 sin(2*pi*u)); A - B = -delta",
+  "files": {
+    "sample_a.tif": {
+      "crs": "EPSG:32632",
+      "resolution_m": 30,
+      "dtype": "int16",
+      "scale": 0.1,
+      "offset": 0.0,
+      "nodata": -32768,
+      "bands": 1,
+      "unit": "m",
+      "width": 106,
+      "height": 150,
+      "utm_bounds": [
+        654005.9355322386,
+        5094861.72383212,
+        657214.8204525929,
+        5099384.1035774965
+      ]
+    },
+    "sample_b.tif": {
+      "crs": "EPSG:32633",
+      "resolution_m": 25,
+      "dtype": "float32",
+      "nodata": "NaN",
+      "bands": [
+        {
+          "index": 1,
+          "unit": "m",
+          "quantity": "elevation m"
+        },
+        {
+          "index": 2,
+          "unit": "ft",
+          "quantity": "elevation ft"
+        }
+      ],
+      "width": 165,
+      "height": 229,
+      "utm_bounds": [
+        189033.80421564402,
+        5100028.553134616,
+        193183.15933469642,
+        5105777.676120426
+      ]
+    }
+  },
+  "test_points": [
+    {
+      "name": "valid_both",
+      "lon": 11.012,
+      "lat": 46.012,
+      "terrain": 1014.8820645368505,
+      "A_expected": 1014.8820645368505,
+      "B_expected_m": 1014.6003866584117,
+      "A_minus_B_expected": 0.2816778784388603,
+      "note": "cell-center values may differ by at most one rasterisation step; the API point reading is from the actual containing cell - manifest truth is analytic."
+    },
+    {
+      "name": "a_nodata_hole",
+      "lon": 11.01,
+      "lat": 46.01,
+      "terrain": 1129.999999999993,
+      "A_expected": 1129.999999999993,
+      "B_expected_m": 1130.4999999999932,
+      "A_minus_B_expected": -0.5000000000002678,
+      "note": "cell-center values may differ by at most one rasterisation step; the API point reading is from the actual containing cell - manifest truth is analytic."
+    },
+    {
+      "name": "b_nodata_hole",
+      "lon": 11.006,
+      "lat": 46.016,
+      "terrain": 901.872875703079,
+      "A_expected": 901.872875703079,
+      "B_expected_m": 902.5994604775219,
+      "A_minus_B_expected": -0.7265847744429077,
+      "note": "cell-center values may differ by at most one rasterisation step; the API point reading is from the actual containing cell - manifest truth is analytic."
+    }
+  ]
+}

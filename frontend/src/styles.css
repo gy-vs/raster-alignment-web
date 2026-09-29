@@ -1,0 +1,140 @@
+:root {
+  --bg: #11151c;
+  --panel: #171d26;
+  --panel2: #1d2531;
+  --border: #2a3442;
+  --text: #dce5ef;
+  --muted: #8b98a9;
+  --accent: #5aa3ff;
+  --ok: #4cc38a;
+  --warn: #e0a64d;
+  --block: #e36b5d;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.5 -apple-system, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+}
+
+#app { display: flex; height: 100vh; overflow: hidden; }
+
+#sidebar {
+  width: 380px;
+  min-width: 340px;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 14px;
+}
+#sidebar h1 { font-size: 16px; margin: 0 0 2px; }
+#sidebar h2 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--muted); margin: 0 0 8px;
+}
+.panel {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.slot-panel {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: #141a23;
+}
+.slot-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.slot-tag {
+  font-weight: 700; padding: 1px 7px; border-radius: 4px; font-size: 12px;
+}
+.slot-tag.a { background: #26405f; color: #b9d6ff; }
+.slot-tag.b { background: #2f4a3c; color: #bdeccf; }
+.slot-file {
+  font-size: 12px; color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.row { display: flex; align-items: center; gap: 8px; margin: 6px 0; flex-wrap: wrap; }
+.row label { display: inline-flex; align-items: center; gap: 4px; }
+
+.btn {
+  background: #243042; color: var(--text);
+  border: 1px solid var(--border); border-radius: 5px;
+  padding: 5px 10px; cursor: pointer; font-size: 12px;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.active { background: #1f3a5c; border-color: var(--accent); }
+.btn-ghost { background: transparent; }
+.small-btn { padding: 1px 8px; font-size: 11px; }
+.disabled-btn { opacity: .45; cursor: not-allowed; }
+
+select, input[type="number"], input[type="text"] {
+  background: #0f151d; color: var(--text);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 3px 6px; font-size: 12px;
+}
+.band-row select { flex: 1; }
+
+.meta-table { border-collapse: collapse; width: 100%; margin-top: 4px; }
+.meta-table td {
+  padding: 2px 4px; vertical-align: top;
+  border-bottom: 1px solid #222b37; font-size: 12px;
+}
+.meta-table td.k { color: var(--muted); width: 42%; }
+.meta-table td.v { word-break: break-word; }
+
+.muted { color: var(--muted); }
+.small { font-size: 11px; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; }
+
+.error-box {
+  background: #3a1d19; border: 1px solid #7a3b31;
+  color: #ffb8ad; border-radius: 5px; padding: 6px 8px;
+  font-size: 12px; margin: 6px 0;
+}
+
+.comp.ok { border-left: 3px solid var(--ok); padding-left: 8px; }
+.comp.blocked { border-left: 3px solid var(--block); padding-left: 8px; }
+.comp-title { font-weight: 600; margin-bottom: 4px; }
+.issue { font-size: 12px; margin: 4px 0; padding: 4px 6px; border-radius: 4px; }
+.issue.block { background: #3a1d19; color: #ffb8ad; }
+.issue.warn { background: #3a3119; color: #f0d49a; }
+.issue.ok { background: #183525; color: #a7e6c4; }
+
+.point-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.point-card {
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 8px; margin: 8px 0; background: #141a23;
+}
+.point-card.a { border-left: 3px solid #5aa3ff; }
+.point-card.b { border-left: 3px solid #4cc38a; }
+.point-card-title { font-weight: 700; margin-bottom: 2px; }
+.diff-box {
+  background: #17283c; border: 1px solid #2f4d70;
+  border-radius: 6px; padding: 8px; margin-top: 6px;
+}
+
+#map-wrap { flex: 1; position: relative; min-width: 0; }
+#map { display: block; cursor: crosshair; touch-action: none; }
+.map-hint {
+  position: absolute; left: 12px; bottom: 10px;
+  background: rgba(0,0,0,.5); color: #cdd9e8;
+  padding: 4px 10px; border-radius: 14px; font-size: 11px;
+  pointer-events: none;
+}
+.fatal {
+  display: none; position: absolute; inset: 20px;
+  background: #3a1d19; color: #ffd2ca;
+  padding: 16px; border-radius: 8px;
+}
