@@ -12,3 +12,4 @@ build/
 *.key
 *.p12
 .DS_Store
+.runtime/
